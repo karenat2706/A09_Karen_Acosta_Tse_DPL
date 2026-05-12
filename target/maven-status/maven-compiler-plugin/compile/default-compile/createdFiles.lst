@@ -1,0 +1,5 @@
+org/karenapp/controller/IdolController.class
+org/karenapp/model/Idol.class
+org/karenapp/service/IdolService.class
+org/karenapp/KarenappApplication.class
+org/karenapp/repository/IdolRepository.class
