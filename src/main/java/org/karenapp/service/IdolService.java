@@ -7,17 +7,36 @@ import java.util.List;
 
 @Service
 public class IdolService {
+    @Autowired
+    private IdolRepository repository;
 
-        @Autowired
-        private IdolRepository repository;
+    // Crear
+    public Idol guardarIdol(Idol idol) {
+        return repository.save(idol);
+    }
+    // Listar todos
+    public List<Idol> obtenerTodos() {
+        return repository.findAll();
+    }
+    // Buscar por ID
+    public Idol obtenerPorId(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Idol no encontrado con ID: " + id));
+    }
+    // Actualizar
+    public Idol actualizarIdol(Long id, Idol idolActualizado) {
+        Idol idolExistente = obtenerPorId(id);
+        idolExistente.setNombreArtistico(idolActualizado.getNombreArtistico());
+        idolExistente.setGrupo(idolActualizado.getGrupo());
+        idolExistente.setGenero(idolActualizado.getGenero());
+        idolExistente.setEdad(idolActualizado.getEdad());
+        idolExistente.setAñosExperiencia(idolActualizado.getAñosExperiencia());
+        return repository.save(idolExistente);
+    }
 
-        // Crear un idols en base de datos
-        public Idol guardarIdol(Idol idol) {
-            return repository.save(idol);
-        }
-
-        // Obtener todos los idols de la base de datos
-        public List<Idol> obtenerTodos() {
-            return repository.findAll();
-        }
+    // Eliminar
+    public void eliminarIdol(Long id) {
+        Idol idol = obtenerPorId(id);
+        repository.delete(idol);
+    }
 }
