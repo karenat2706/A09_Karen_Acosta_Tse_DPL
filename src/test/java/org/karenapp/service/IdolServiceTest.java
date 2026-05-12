@@ -40,8 +40,8 @@ public class IdolServiceTest {
         Idol guardado = service.guardarIdol(new Idol());
 
         assertNotNull(guardado);
-        assertEquals("Felix", guardado.getNombreArtistico());
-        assertEquals("Stray Kids", guardado.getGrupo());
+        assertEquals("Beomgyu", guardado.getNombreArtistico());
+        assertEquals("TXTc", guardado.getGrupo());
         assertEquals(24, guardado.getEdad());
         verify(repository, times(1)).save(any(Idol.class));
     }
